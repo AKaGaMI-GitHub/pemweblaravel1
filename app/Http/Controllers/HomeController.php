@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $title="Data Mahasiswa";
-        $data['mahasiswa']=array(
-            'nim'=>'1905021007',
+        $title="Home";
+        $data['pasien']=array(
             'nama'=>'Made Anantha Yoga',
+            'nhewan'=>'Blacky',
+            'jhewan'=>'Anjing',
             'alamat'=>'Jalan Lingga No 2',
-            'nohp'=>'082146855989',
-            'email'=>'anantha@undiksha.ac.id'
+            'nohp'=>'082146855989'
         );
         return view('admin.beranda', compact('title','data'));
     }
