@@ -75,8 +75,10 @@ class DatapasienController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $pasien=Datapasien::find($id);
+        $title="Edit Data Pasien";
+        return view('admin.inputdatapasien',compact('title','pasien'));
     }
 
     /**
@@ -88,7 +90,23 @@ class DatapasienController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $message=[
+            'required'=> 'Kolom :attribute harus lengkap',
+            'date'=> 'Kolom :attribute harus tanggal',
+            'numeric'=> 'Kolom :attribute harus angka'
+        ];
+        $validasi=$request->validate([
+            'namaclient'=>'required|unique:datapasiens|max:255',
+            'namahewan'=>'required|max:255',
+            'jenishewan'=>'required|max:255',
+            'jeniskelaminhewan'=>'required',
+            'jenistindakan'=>'required',
+            'alamat'=>'required|max:255',
+            'nohp'=>'required|max:255',
+            'waktu'=>'required',
+        ],$message);
+        Datapasien::where('id',$id)->update($validasi);
+        return redirect('datapasien')->with('success','Data berhasil diedit');
     }
 
     /**
@@ -99,6 +117,7 @@ class DatapasienController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Datapasien::where('id',$id)->delete();        
+        return redirect('datapasien')->with('success','Data berhasil dihapus');
     }
 }

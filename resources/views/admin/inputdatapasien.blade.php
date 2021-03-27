@@ -10,8 +10,11 @@
                 <p class="font-bold text-center text-white text-lg">{{$title}}</p>
             </div>
             <div class="bg-gray-800 sm:px-1 sm:py-1">
-                <form action="{{route('datapasien.store')}}" method="POST">
+                <form action="{{(isset($pasien))?route('datapasien.update', $pasien->id):route('datapasien.store')}}" method="POST">
                 @csrf
+                @if (isset($pasien))
+                    @method('PUT')
+                @endif
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <div class="px-4 py-5 bg-gray-900 space-y-6 sm:p-6">
                     <div class="grid grid-cols-3 gap-6">
@@ -20,7 +23,7 @@
                                 Nama Client
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="namaclient" id="namaclient" placeholder="Nama Pemilik Hewan" class="@error('namaclient') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
+                                <input type="text" name="namaclient" id="namaclient" value="{{(isset($pasien))?$pasien->namaclient:old('namaclient')}}" placeholder="Nama Pemilik Hewan" class="@error('namaclient') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
                             </div>
                             <div class="text-xs text-red-500"> @error('namaclient') {{$message}} @enderror</div>
                         </div>
@@ -31,7 +34,7 @@
                                 Nama Hewan
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="namahewan" id="namahewan" placeholder="Nama Hewan" class="@error('namahewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
+                                <input type="text" name="namahewan" id="namahewan" value="{{(isset($pasien))?$pasien->namahewan:old('namahewan')}}" placeholder="Nama Hewan" class="@error('namahewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
                             </div>
                             <div class="text-xs text-red-500"> @error('namahewan') {{$message}} @enderror</div>
                         </div>
@@ -42,7 +45,7 @@
                                 Jenis Hewan
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="jenishewan" id="jenishewan" placeholder="Jenis Hewan" class="@error('jenishewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
+                                <input type="text" name="jenishewan" id="jenishewan" value="{{(isset($pasien))?$pasien->jenishewan:old('jenishewan')}}" placeholder="Jenis Hewan" class="@error('jenishewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
                             </div>
                             <div class="text-xs text-red-500"> @error('jenishewan') {{$message}} @enderror</div>
                         </div>
@@ -53,7 +56,7 @@
                                 Jenis Kelamin Hewan
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <select name="jeniskelaminhewan" id="jeniskelaminhewan" class="@error('jeniskelaminhewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white py-2 px-2">
+                                <select name="jeniskelaminhewan" id="jeniskelaminhewan" value="{{(isset($pasien))?$pasien->jeniskelaminhewan:old('jeniskelaminhewan')}}" class="@error('jeniskelaminhewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white py-2 px-2">
                                     <option value="">Masukan Pilihan</option>
                                     <option value="Jantan">Jantan</option>
                                     <option value="Betina">Betina</option>
@@ -68,7 +71,7 @@
                                 Jenis Tindakan
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <select name="jenistindakan" id="jenistindakan" class="@error('jenistindakan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white py-2 px-2">
+                                <select name="jenistindakan" id="jenistindakan" value="{{(isset($pasien))?$pasien->jenistindakan:old('jenistindakan')}}" class="@error('jenistindakan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white py-2 px-2">
                                     <option value="">Masukan Pilihan</option>
                                     <option value="Vaksinasi">Vaksinasi</option>
                                     <option value="Suntik Vitamin">Suntik Vitamin</option>
@@ -83,7 +86,7 @@
                                 Alamat
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="alamat" id="alamat" placeholder="Alamat Client" class="@error('alamat') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
+                                <input type="text" name="alamat" id="alamat" value="{{(isset($pasien))?$pasien->alamat:old('alamat')}}" placeholder="Alamat Client" class="@error('alamat') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
                             </div>
                             <div class="text-xs text-red-500"> @error('alamat') {{$message}} @enderror</div>
                         </div>
@@ -94,7 +97,7 @@
                                 No Telphone
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="nohp" id="nohp" placeholder="Nomer Yang Bisa Dihubungi" class="@error('nohp') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
+                                <input type="text" name="nohp" id="nohp" value="{{(isset($pasien))?$pasien->nohp:old('nohp')}}" placeholder="Nomer Yang Bisa Dihubungi" class="@error('nohp') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
                             </div>
                             <div class="text-xs text-red-500"> @error('nohp') {{$message}} @enderror</div>
                         </div>

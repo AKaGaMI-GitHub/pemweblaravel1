@@ -22,7 +22,6 @@
                 <table class="w-full p-5">
                     <thead>
                         <tr class="font-bold text-left text-white">
-                            <th>Tanda</th>
                             <th>No</th>
                             <th>Nama Client</th>
                             <th>Nama Hewan</th>
@@ -38,7 +37,6 @@
                             <?php $no=1;?>
                             @foreach ($datapasien as $item)
                                 <tr>
-                                    <td type="checkbox" name="" id=""></td>
                                     <td>{{$no}}</td>
                                     <td>{{$item->namaclient}}</td>
                                     <td>{{$item->namahewan}}</td>
@@ -48,14 +46,19 @@
                                     <td>{{$item->nohp}}</td>
                                     <td>{{$item->waktu}}</td>
                                     <td>
-                                        <button class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded">Edit</button>
-                                        <button class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-4 rounded">Delete</button>
+                                    <a href="{{route('datapasien.edit',$item->id)}}"><button class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded">Edit</button></a>
+                                        <form action="{{route('datapasien.destroy',$item->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')                                 
+                                            <button class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-4 rounded">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php $no++;?>
                             @endforeach
                         </tbody>
                 </table>
+
             </div>
         </div>
     </div>
