@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Datapasien;
+use App\Models\Hewan;
+use App\Models\Tindakan;
 use Illuminate\Http\Request;
 
 class DatapasienController extends Controller
@@ -27,7 +29,10 @@ class DatapasienController extends Controller
     public function create()
     {
         $title="Input Data Pasien";
-        return view('admin.inputdatapasien',compact('title'));
+        $hewan=Hewan::all();
+        $tindakan=Tindakan::all();
+        return view('admin.inputdatapasien',compact('title','hewan','tindakan'));
+        
     }
 
     /**
@@ -46,7 +51,7 @@ class DatapasienController extends Controller
         $validasi=$request->validate([
             'namaclient'=>'required|unique:datapasiens|max:255',
             'namahewan'=>'required|max:255',
-            'jenishewan'=>'required|max:255',
+            'jenishewan'=>'required',
             'jeniskelaminhewan'=>'required',
             'jenistindakan'=>'required',
             'alamat'=>'required|max:255',
@@ -77,8 +82,10 @@ class DatapasienController extends Controller
     public function edit($id)
     {   
         $pasien=Datapasien::find($id);
+        $hewan=Hewan::all();
+        $tindakan=Tindakan::all();
         $title="Edit Data Pasien";
-        return view('admin.inputdatapasien',compact('title','pasien'));
+        return view('admin.inputdatapasien',compact('title','pasien','hewan','tindakan'));
     }
 
     /**

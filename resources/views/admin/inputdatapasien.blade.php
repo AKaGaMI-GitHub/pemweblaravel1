@@ -45,7 +45,12 @@
                                 Jenis Hewan
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="text" name="jenishewan" id="jenishewan" value="{{(isset($pasien))?$pasien->jenishewan:old('jenishewan')}}" placeholder="Jenis Hewan" class="@error('jenishewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white">
+                                <select name="jenishewan" id="jenishewan" value="{{(isset($pasien))?$pasien->jenishewan:old('jenishewan')}}" class="@error('jenishewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white py-2 px-2">
+                                    <option value="">==> Masukan Pilihan <==</option>
+                                    @foreach ($hewan as $item)
+                                        <option value="{{$item->jns_hewan}}">{{$item->jns_hewan}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="text-xs text-red-500"> @error('jenishewan') {{$message}} @enderror</div>
                         </div>
@@ -57,7 +62,7 @@
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <select name="jeniskelaminhewan" id="jeniskelaminhewan" value="{{(isset($pasien))?$pasien->jeniskelaminhewan:old('jeniskelaminhewan')}}" class="@error('jeniskelaminhewan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white py-2 px-2">
-                                    <option value="">Masukan Pilihan</option>
+                                    <option value="">==> Masukan Pilihan <==</option>
                                     <option value="Jantan">Jantan</option>
                                     <option value="Betina">Betina</option>
                                 </select>
@@ -72,9 +77,10 @@
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
                                 <select name="jenistindakan" id="jenistindakan" value="{{(isset($pasien))?$pasien->jenistindakan:old('jenistindakan')}}" class="@error('jenistindakan') border-red-600 @enderror focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded sm:text-sm border-gray-300 bg-gray-900 text-white py-2 px-2">
-                                    <option value="">Masukan Pilihan</option>
-                                    <option value="Vaksinasi">Vaksinasi</option>
-                                    <option value="Suntik Vitamin">Suntik Vitamin</option>
+                                    <option value="">==> Masukan Pilihan <==</option>
+                                    @foreach ($tindakan as $item)
+                                        <option value="{{$item->jns_tindakan}}">{{$item->jns_tindakan}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="text-xs text-red-500"> @error('jenistindakan') {{$message}} @enderror</div>

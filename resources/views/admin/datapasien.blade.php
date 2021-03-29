@@ -46,11 +46,11 @@
                                     <td>{{$item->nohp}}</td>
                                     <td>{{$item->waktu}}</td>
                                     <td>
-                                    <a href="{{route('datapasien.edit',$item->id)}}"><button class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded">Edit</button></a>
-                                        <form action="{{route('datapasien.destroy',$item->id)}}" method="POST">
+                                        <form action="{{route('datapasien.destroy',$item->id)}}" method="post">
+                                            <a href="{{route('datapasien.edit',$item->id)}}" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded">Edit</a>
                                             @csrf
                                             @method('DELETE')                                 
-                                            <button class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-4 rounded">Delete</button>
+                                            <input type="submit" value="Delete" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-4 rounded"></input>
                                         </form>
                                     </td>
                                 </tr>
