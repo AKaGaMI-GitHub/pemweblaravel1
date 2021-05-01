@@ -11,7 +11,7 @@
             </div>
             <div class="grid grid-cols-12">
                 <div class="col-span-6 p-3">
-                    <a href="{{route('datapasien.create')}}"><button class="bg-green-500 hover:bg-yellow-400 text-white font-bold py-2 px-3 rounded">+ Tambah Data</button></a>
+                    <a href="{{route('rekamedis.create')}}"><button class="bg-green-500 hover:bg-yellow-400 text-white font-bold py-2 px-3 rounded">+ Tambah Data</button></a>
                 </div>
                 <div class="col-span-6 p-3 flex justify-end">
                     <input type="text" placeholder="Search" class="py-2 px-3 bg-gray-900 text-sm text-gray-400 border-gray-800 focus:ring-green-500 focus:border-green-500">
@@ -35,7 +35,7 @@
                     </thead>
                         <tbody class="text-left text-gray-400">
                             <?php $no=1;?>
-                            @foreach ($datapasien as $item)
+                            @foreach ($rekamedis as $item)
                                 <tr>
                                     <td>{{$no}}</td>
                                     <td>{{$item->namaclient}}</td>
@@ -46,8 +46,8 @@
                                     <td>{{$item->nohp}}</td>
                                     <td>{{$item->waktu}}</td>
                                     <td>
-                                        <form action="{{route('datapasien.destroy',$item->id)}}" method="post">
-                                            <a href="{{route('datapasien.edit',$item->id)}}" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded">Edit</a>
+                                        <form action="{{route('rekamedis.destroy',$item->id)}}" method="post">
+                                            <a href="{{route('rekamedis.edit',$item->id)}}" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded">Edit</a>
                                             @csrf
                                             @method('DELETE')                                 
                                             <input type="submit" value="Delete" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-4 rounded"></input>

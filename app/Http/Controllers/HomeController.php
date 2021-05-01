@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Datahewan;
+use App\Models\Hewan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
-{
+{   
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(){
-        $title="Home";
-        $data['pasien']=array(
-            'nama'=>'Made Anantha Yoga',
-            'nhewan'=>'Blacky',
-            'jhewan'=>'Anjing',
-            'alamat'=>'Jalan Lingga No 2',
-            'nohp'=>'082146855989'
-        );
-        return view('admin.beranda', compact('title','data'));
+        $hewan=Datahewan::all();
+        $title="Data Hewan";
+        return view('admin.datahewan', compact('title'));
     }
-    public function dashboard(){
-        $title="Data Dashboard";
-
-        return view('admin.dashboard', compact('title'));
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title="Input Data Pasien";
+        $hewan=Datahewan::all();
+        return view('admin.inputdatahewan',compact('title','hewan'));
     }
 }

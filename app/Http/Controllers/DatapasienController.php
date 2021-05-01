@@ -16,9 +16,9 @@ class DatapasienController extends Controller
      */
     public function index()
     {
-        $datapasien=Datapasien::all();
-        $title="Data Pasien";
-        return view('admin.datapasien',compact('title','datapasien'));
+        $rekamedis=Datapasien::all();
+        $title="Rekam Medis";
+        return view('admin.rekamedis',compact('title','rekamedis'));
     }
 
     /**
@@ -31,7 +31,7 @@ class DatapasienController extends Controller
         $title="Input Data Pasien";
         $hewan=Hewan::all();
         $tindakan=Tindakan::all();
-        return view('admin.inputdatapasien',compact('title','hewan','tindakan'));
+        return view('admin.inputrekamedis',compact('title','hewan','tindakan'));
         
     }
 
@@ -59,7 +59,7 @@ class DatapasienController extends Controller
             'waktu'=>'required',
         ],$message);
         Datapasien::create($validasi);
-        return redirect('datapasien')->with('success','Data berhasil ditambahkan');
+        return redirect('rekamedis')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -85,7 +85,7 @@ class DatapasienController extends Controller
         $hewan=Hewan::all();
         $tindakan=Tindakan::all();
         $title="Edit Data Pasien";
-        return view('admin.inputdatapasien',compact('title','pasien','hewan','tindakan'));
+        return view('admin.inputrekamedis',compact('title','pasien','hewan','tindakan'));
     }
 
     /**
@@ -113,7 +113,7 @@ class DatapasienController extends Controller
             'waktu'=>'required',
         ],$message);
         Datapasien::where('id',$id)->update($validasi);
-        return redirect('datapasien')->with('success','Data berhasil diedit');
+        return redirect('rekamedis')->with('success','Data berhasil diedit');
     }
 
     /**
@@ -125,6 +125,6 @@ class DatapasienController extends Controller
     public function destroy($id)
     {
         Datapasien::where('id',$id)->delete();        
-        return redirect('datapasien')->with('success','Data berhasil dihapus');
+        return redirect('rekamedis')->with('success','Data berhasil dihapus');
     }
 }

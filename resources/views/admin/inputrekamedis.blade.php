@@ -10,7 +10,7 @@
                 <p class="font-bold text-center text-white text-lg">{{$title}}</p>
             </div>
             <div class="bg-gray-800 sm:px-1 sm:py-1">
-                <form action="{{(isset($pasien))?route('datapasien.update', $pasien->id):route('datapasien.store')}}" method="POST">
+                <form action="{{(isset($pasien))?route('rekamedis.update', $pasien->id):route('rekamedis.store')}}" method="POST">
                 @csrf
                 @if (isset($pasien))
                     @method('PUT')

@@ -5,6 +5,7 @@ use App\Http\Controllers\HewanController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Whoops\Run;
+use App\Http\Livewire\Crud;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,9 @@ Route::get('/', function () {
 //    return view('dashboard');
 //})->name('dashboard');
 
-Route::get('/home',[HomeController::class,'index'])->name('home')->middleware(['auth:sanctum','verified']);
+Route::get('/datahewan',[HomeController::class,'index'])->name('datahewan')->middleware(['auth:sanctum','verified']);
 Route::get('/dashboard',[HomeController::class,'dashboard'])->name('dashboard')->middleware(['auth:sanctum','verified']);
-Route::resource('datapasien',DatapasienController::class);
+Route::resource('rekamedis',DatapasienController::class);
 Route::resource('hewan',DatapasienController::class);
 Route::resource('tindakan',DatapasienController::class);
+Route::get('datadokters', Crud::class);
